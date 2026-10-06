@@ -15,7 +15,7 @@ def load_tasks():
 
 def priority_label(priority):
     """Turn a stored priority into a display label."""
-    return {1: "LOW", 2: "MEDIUM", 3: "HGIH"}[priority]
+    return {1: "LOW", 2: "MEDIUM", 3: "HIGH"}[priority]
 
 
 def render_heading():
