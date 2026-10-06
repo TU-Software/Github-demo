@@ -53,6 +53,8 @@ def render_summary(tasks):
     print(f"Total:     {len(tasks)}")
     print(f"Completed: {completed}")
     print(f"Open:      {remaining}")
+    urgent = sum(task["priority"] == 3 for task in tasks)
+    print(f"High:      {urgent}")
 
 
 def build_parser():
