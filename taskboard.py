@@ -28,6 +28,10 @@ def render_heading():
 def selected_tasks(tasks, args):
     """Select and order tasks for the list view."""
     result = list(tasks)
+    if args.open:
+        result = [task for task in result if not task["done"]]
+    elif args.completed:
+        result = [task for task in result if task["done"]]
     return sorted(result, key=lambda task: task["id"])
 
 
@@ -55,6 +59,9 @@ def build_parser():
     """Create the command-line interface."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=["list", "summary"], default="list", nargs="?")
+    filters = parser.add_mutually_exclusive_group()
+    filters.add_argument("--open", action="store_true", help="show only open tasks")
+    filters.add_argument("--completed", action="store_true", help="show only completed tasks")
     return parser
 
 
