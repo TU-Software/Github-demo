@@ -1,0 +1,25 @@
+name: Task board smoke test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Run task board commands
+        run: |
+          python taskboard.py list --open
+          python taskboard.py list --completed
+          python taskboard.py summary

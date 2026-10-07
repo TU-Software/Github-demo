@@ -20,7 +20,7 @@ def priority_label(priority):
 
 def render_heading():
     """Print the heading shared by both views."""
-    print("Pocket Tasks")
+    print("Pocket Tasks — demo edition")
     print("============")
     print()
 
@@ -32,7 +32,7 @@ def selected_tasks(tasks, args):
         result = [task for task in result if not task["done"]]
     elif args.completed:
         result = [task for task in result if task["done"]]
-    return sorted(result, key=lambda task: task["id"])
+    return sorted(result, key=lambda task: task["title"].casefold())
 
 
 def render_tasks(tasks):
@@ -55,6 +55,7 @@ def render_summary(tasks):
     print(f"Open:      {remaining}")
     urgent = sum(task["priority"] == 3 for task in tasks)
     print(f"High:      {urgent}")
+    print("Tip: run list --open to choose your next task.")
 
 
 def build_parser():

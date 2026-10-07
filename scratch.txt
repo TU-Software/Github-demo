@@ -1,0 +1,2 @@
+Untracked demo note: discuss how the index differs from the working tree.
+Try git add -N scratch.txt, then git add -p scratch.txt.
